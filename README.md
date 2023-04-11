@@ -13,7 +13,7 @@ Simply download the AutoTyper.zip file and run run.exe.
 ## Usage/Examples
 
 To use AutoTyper, first copy the text you want to insert to your clipboard. Then press the F9 key, and the text will be automatically typed into your active application.
-
+The program can be exited by right-clicking the tray icon and selecting the "Quit" option from the menu.
 
 ## Note
 
