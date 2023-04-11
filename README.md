@@ -18,9 +18,13 @@ To use AutoTyper, first copy the text you want to insert to your clipboard. Then
 ## Note
 
 This program runs in the background and may interfere with other applications that use the same keyboard shortcut. Please use caution when using this program, and make sure you are not accidentally inserting text into the wrong application.
-## Optimizations
 
-For changing the shortcut key, simply change Keyname in line 33. Recreating .exe file with changes: 
+## Optimizations
+All files for making changes are in build.zip.
+
+For changing the shortcut key, simply change Keyname in line 33. 
+
+Recreating .exe file with changes: 
 
 Step 1: run build.bat in build folder 
 
