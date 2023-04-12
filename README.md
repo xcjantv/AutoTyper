@@ -12,7 +12,7 @@ Simply download the AutoTyper.zip file and run run.exe.
     
 ## Usage/Examples
 
-To use AutoTyper, first copy the text you want to insert to your clipboard. Then press the F9 key, and the text will be automatically typed into your active application.
+To use AutoTyper, first copy the text you want to insert to your clipboard. Then press the F9 key (if not configuered otherwise in system tray menu), and the text will be automatically typed into your active application.
 The program can be exited by right-clicking the tray icon and selecting the "Quit" option from the menu.
 
 ## Note
@@ -21,8 +21,6 @@ This program runs in the background and may interfere with other applications th
 
 ## Optimizations
 All files for making changes are in build.zip.
-
-For changing the shortcut key, simply change Keyname in line 33. 
 
 Recreating .exe file with changes: 
 
