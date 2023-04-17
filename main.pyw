@@ -7,20 +7,29 @@ import keyboard
 from threading import Thread
 import pystray
 from PIL import Image
-from tkinter import Tk, Label, Button, StringVar
+from tkinter import Tk, Label, Button, StringVar, Entry, Checkbutton
 from queue import Queue
+import json
+import os
 
 # Tray icon
 icon = Image.open("icon.png")
 message_queue = Queue()
+
 # Set default key to listen for
-chosen_key = 'f9'
+if os.path.isfile('hotkey_settings.json'):
+    with open('hotkey_settings.json', 'r') as f:
+        hotkey_data = json.load(f)
+        chosen_key = hotkey_data['hotkey']
+else:
+    chosen_key = 'F9'
+
 # Flag to indicate whether keyboard listener is active
 listener_active = False
 
 # Function to handle key press
 def on_key_press(key):
-    if key.name == chosen_key:
+    if key.name == chosen_key.lower():
         text = pyperclip.paste()
         keyboard.write(text)
 
@@ -47,19 +56,46 @@ def popup():
     # Create popup window
     popup_window = Tk()
     popup_window.title("Change key")
-    popup_window.geometry("200x400")
+    popup_window.geometry("200x250")
 
-    # Add label and buttons for key selection
-    Label(popup_window, text="Select a key:").pack()
+    # Add label and entry field for key selection
+    Label(popup_window, text="Enter a key:").pack()
+    entry = Entry(popup_window)
+    entry.insert(0, chosen_key.upper())
+    entry.pack()
 
-    def select_key(key):
+    # Add checkbox to save hotkey to JSON file
+    save_key_var = StringVar()
+    save_key_var.set("false")
+    save_key_checkbox = Checkbutton(popup_window, text="Save hotkey as default", variable=save_key_var)
+    save_key_checkbox.pack()
+
+    def select_key():
         global chosen_key
-        chosen_key = key
+        chosen_key = entry.get()
         message_queue.put("restart_listener")
+
+        # Check if the "save to JSON" checkbox is selected
+        save_to_json = save_key_var.get()
+        if save_to_json:
+            # Define the filename of the JSON file
+            json_filename = "hotkey_settings.json"
+
+            # Check if the JSON file exists
+            if os.path.isfile(json_filename):
+                # Open the existing file for writing (overwrite)
+                with open(json_filename, "w") as f:
+                    # Write the hotkey setting to the file
+                    json.dump({"hotkey": chosen_key}, f)
+            else:
+                # Create a new file for writing
+                with open(json_filename, "w") as f:
+                    # Write the hotkey setting to the file
+                    json.dump({"hotkey": chosen_key}, f)
+
         popup_window.destroy()
 
-    for key in keys:
-        Button(popup_window, text=key, command=lambda key=key: select_key(key)).pack()
+    Button(popup_window, text="Select Key", command=select_key).pack()
 
     popup_window.mainloop()
 
@@ -73,7 +109,6 @@ def on_key_change():
     popup()
 
 # Create system tray icon
-keys = ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12']
 menu = pystray.Menu(
     pystray.MenuItem('Change key', on_key_change),
     pystray.MenuItem('Quit', on_quit)
