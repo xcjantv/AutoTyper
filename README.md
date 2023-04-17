@@ -8,11 +8,12 @@ AutoTyper is a small application that allows you to easily and quickly insert te
 ## Installation
 
 No installation is required for this program. 
-Simply download the AutoTyper.zip file and run run.exe.
+Simply download the AutoTyper.zip file and run main.exe.
     
 ## Usage/Examples
 
 To use AutoTyper, first copy the text you want to insert to your clipboard. Then press the F9 key (if not configuered otherwise in system tray menu), and the text will be automatically typed into your active application.
+The default key can be configured in system tray menue by changing the HotKey an selecting the "save as default key" checkbox. (It will create a .json with configuration)
 The program can be exited by right-clicking the tray icon and selecting the "Quit" option from the menu.
 
 ## Note
@@ -25,8 +26,6 @@ All files for making changes are in build.zip.
 Recreating .exe file with changes: 
 
 Step 1: run build.bat in build folder 
-
-Step 2: Copy icon.png to dist folder 
 
 -> new .exe in dist folder
 
