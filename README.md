@@ -14,9 +14,11 @@ Simply download the AutoTyper.zip file and run main.exe.
 
 To use AutoTyper, first copy the text you want to insert to your clipboard. Then press the F9 key (if not configuered otherwise in system tray menu), and the text will be automatically typed into your active application.
 The default key can be configured in system tray menue by changing the HotKey an selecting the "save as default key" checkbox. (It will create a .json with configuration)
+
 ![image](https://user-images.githubusercontent.com/59826149/232993107-c78d54cb-e6eb-4e9b-8192-faa31a0f40ec.png)
 
 The program can be exited by right-clicking the tray icon and selecting the "Quit" option from the menu.
+
 ![image](https://user-images.githubusercontent.com/59826149/232993265-c8f53c7b-a849-4205-aa7d-922fc471a49d.png)
 
 
